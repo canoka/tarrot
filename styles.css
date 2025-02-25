@@ -1,0 +1,732 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500&display=swap');
+body {
+    background: linear-gradient(135deg, #1e1e2f, #2a2a4a);
+    color: #d4c7a0;
+    font-family: 'Cinzel', serif;
+    margin: 0;
+    background-image: url('images/stone-texture.jpg');
+    background-size: cover;
+    background-blend-mode: overlay;
+    overflow: hidden;
+}
+
+.intro-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(135deg, rgba(30, 30, 47, 0.9), rgba(42, 42, 74, 0.9)), url('images/castle-gate.jpg') center center / cover no-repeat; /* Kale kapısı arka planı */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 1001;
+    animation: fadeIn 1s ease-in, shimmer 4s infinite; /* Parlama efekti */
+}
+
+@keyframes shimmer {
+    0% { box-shadow: 0 0 10px #ffd700; }
+    50% { box-shadow: 0 0 20px #ffd700, 0 0 30px #f5e050; }
+    100% { box-shadow: 0 0 10px #ffd700; }
+}
+
+.intro-screen h1 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #ffd700;
+    font-size: 3.5em;
+    text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.9), 0 0 15px #ffd700; 
+    animation: pulse 2s infinite alternate;
+    z-index: 1002;
+    pointer-events: none;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.intro-screen select {
+    background: #3c2f2f;
+    border: 3px solid #8b5e34; 
+    color: #d4c7a0;
+    padding: 12px;
+    margin: 15px;
+    font-family: 'Cinzel', serif;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(235, 186, 52, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.3);
+    animation: glow 3s infinite alternate;
+    z-index: 1003; 
+    pointer-events: auto; 
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(235, 186, 52, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(235, 186, 52, 0.8); }
+}
+
+.intro-screen button {
+    background: linear-gradient(90deg, #8b5e34, #5c4033);
+    padding: 18px 35px;
+    border-radius: 15px;
+    border: 3px solid #ffd700;
+    color: #d4c7a0;
+    font-family: 'Cinzel', serif;
+    font-size: 1.3em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 0 15px rgba(235, 186, 52, 0.6), inset 0 0 8px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: glow 3s infinite alternate;
+    z-index: 1003;
+    pointer-events: auto;
+}
+
+.intro-screen button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 25px rgba(235, 186, 52, 0.8), inset 0 0 10px rgba(0, 0, 0, 0.6);
+}
+
+.hidden {
+    display: none;
+}
+
+.container {
+    max-width: 100%;
+    margin: 20px auto;
+    padding: 20px;
+    text-align: center;
+    height: 90vh;
+    overflow-y: auto;
+    z-index: 900; 
+}
+
+#userForm {
+    background: url('images/parchment-texture.jpg') center center / cover no-repeat;
+    border: 1.2px solid #b8860b; 
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(139, 69, 19, 0.2); 
+    color: #ffd700;
+    position: relative;
+    animation: shimmer 5s infinite alternate;
+}
+
+#userForm table {
+    width: 50%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    margin-left: auto;    
+    margin-right: auto;   
+}
+
+#userForm tr {
+    vertical-align: middle;
+}
+
+#userForm td {
+    padding: 10px;
+}
+
+#userForm label {
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+}
+
+#userForm input, #userForm select {
+    background: url('images/leather-texture.jpg') center center / cover no-repeat; 
+    border: 3px solid #8b4513; 
+    color: #ffd700; 
+    border-radius: 8px;
+    padding: 12px;
+    width: 100%;
+    max-width: 250px;
+    font-family: 'Cinzel', serif;
+    box-shadow: 0 0 10px rgba(139, 69, 19, 0.5), inset 0 0 5px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.3s;
+}
+
+#userForm input:focus, #userForm select:focus {
+    box-shadow: 0 0 20px rgba(139, 69, 19, 0.8), inset 0 0 8px rgba(0, 0, 0, 0.4);
+    outline: none;
+}
+
+#submitButton {
+    background: url('images/leather-texture.jpg') center center / cover no-repeat;
+    padding: 12px 25px;
+    border-radius: 5px;
+    border: 3px solid #8b4513;
+    color: #ffd700;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4), inset 0 0 8px rgba(0, 0, 0, 0.6);
+    position: relative;
+    overflow: hidden;
+    margin: 10px 0;
+    font-size: 1em;
+    pointer-events: auto;
+    animation: glow 3s infinite alternate;
+}
+
+#submitButton::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 8px;
+    height: 8px;
+    background: #ff0000;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+}
+
+#submitButton:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.8);
+    animation: flicker 2s infinite;
+}
+
+
+#formTitle {
+    font-family: 'Cinzel Decorative', serif;
+    color: #ffd700;
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.8);
+    margin-bottom: 20px;
+}
+
+
+#cardSelection {
+    text-align: center;
+    padding: 20px;
+}
+
+#cardTitle {
+    font-family: 'Cinzel Decorative', serif;
+    color: #ffd700;
+    text-shadow: 4px 4px 10px rgba(0, 0, 0, 0.9), 0 0 20px #ffd700;
+    margin-bottom: 20px;
+    animation: pulse 2s infinite alternate;
+}
+
+.card-deck {
+    position: relative;
+    width: 100vw; 
+    max-width: calc(100vw - 40px);
+    margin: 0 auto;
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    padding: 20px 0;
+    -webkit-overflow-scrolling: touch; /* Dokunmatik cihazlar için */
+}
+
+
+.card-deck::-webkit-scrollbar {
+    height: 8px;
+}
+
+.card-deck::-webkit-scrollbar-track {
+    background: #2a2a4a;
+    border-radius: 4px;
+}
+
+.card-deck::-webkit-scrollbar-thumb {
+    background: #8b5e34; 
+    border-radius: 4px;
+    border: 2px solid #2a2a4a; 
+}
+
+.card-deck::-webkit-scrollbar-thumb:hover {
+    background: #5c4033;
+}
+
+/* Firefox*/
+.card-deck {
+    scrollbar-width: thin; 
+    scrollbar-color: #8b5e34 #2a2a4a; 
+}
+
+
+.card {
+    width: 100px;
+    height: 150px;
+    background-image: url('images/back.png');
+    background-size: cover;
+    border-radius: 10px;
+    border: 3px solid #ffd700; 
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(235, 186, 52, 0.3);
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.5s;
+    animation: flicker 3s infinite;
+    flex-shrink: 0; 
+    position: relative;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/card-ornament.png') center center / contain no-repeat; 
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 215, 0, 0.1); 
+    border-radius: 10px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 2;
+}
+
+.card:hover::after {
+    opacity: 0.5;
+    box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(235, 186, 52, 0.6), 0 0 25px rgba(255, 215, 0, 0.8);
+}
+
+.card.disappearing {
+    animation: fadeOut 0.5s ease-out forwards;
+}
+
+.selected-cards {
+    position: relative;
+    width: 100%;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.selected-card {
+    width: 100px;
+    height: 150px;
+    background-image: url('images/back.png');
+    background-size: cover;
+    border-radius: 10px;
+    border: 3px solid #ffd700; 
+    cursor: pointer;
+    transition: transform 0.5s, box-shadow 0.5s;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5), 0 0 15px rgba(235, 186, 52, 0.3);
+    animation: slideIn 0.8s ease-out;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.selected-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('images/card-ornament.png') center center / contain no-repeat; 
+    opacity: 0.8;
+    z-index: 1;
+}
+
+.selected-card.flipped {
+    transform: rotateY(180deg);
+    box-shadow: 0 6px 25px rgba(235, 186, 52, 0.5), 0 0 25px rgba(255, 215, 0, 0.7);
+}
+
+
+.selected-card::after {
+    content: '';
+    display: none;
+}
+
+
+.selected-cards-parchment {
+    background: url('images/parchment-texture.jpg') center center / cover no-repeat;
+    border-radius: 10px;
+    padding: 15px;
+    margin: 20px auto;
+    max-width: 800px;
+    color: #ffd700; 
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    animation: shimmer 5s infinite alternate;
+}
+
+.selected-cards-parchment.hidden {
+    display: none;
+}
+
+.selected-cards-parchment .card-name {
+    display: inline-block;
+    margin: 5px 10px;
+    font-size: 0.8em;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+    animation: slideIn 0.5s ease-out;
+}
+
+
+#resultSection button, #savedResultsSection button {
+    background: url('images/leather-texture.jpg') center center / cover no-repeat;
+    padding: 10px 20px;
+    border-radius: 5px;
+    color: #ffd700;
+    border: 1px solid #8b4513;
+    cursor: pointer;
+    transition: transform 0.3s, box-shadow 0.3s;
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;    position: relative;
+    overflow: hidden;
+    margin: 5px;
+    display: inline-block;
+    font-size: 0.9em;
+    pointer-events: auto;
+    animation: glow 3s infinite alternate;
+}
+
+#resultSection button::after, #savedResultsSection button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 8px;
+    height: 8px;
+    background: #ff0000;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+}
+
+#resultSection button:hover, #savedResultsSection button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.8);
+    animation: flicker 2s infinite;
+}
+
+#resultSection, #savedResultsSection {
+    background: url('images/parchment-texture.jpg') center center / cover no-repeat;
+    border: 2px solid #b8860b;
+    border-radius: 15px;
+    padding: 30px;
+    color: #ffd700;
+    position: relative;
+}
+
+#resultText {
+    overflow-y: hidden;
+    border-radius: 10px;
+    padding: 5px;
+    color: #ffd700;
+    font-family: 'Cinzel', serif;
+    text-align: center;
+    white-space: pre-line; 
+    display: block !important; 
+    opacity: 1 !important; 
+    visibility: visible !important; 
+    min-height: 200px; 
+    overflow: auto; 
+    max-width: 100%; 
+}
+
+
+#resultText .user-info,
+#resultText .selected-cards,
+#resultText .card-readings,
+#resultText .detailed-reading {
+    margin: 20px 0;
+    padding: 15px;
+    background: rgba(255, 215, 0, 0.05);
+    border: 2px dashed #ffd700; 
+    border-radius: 8px;
+    position: relative;
+    max-width: 95%;
+    margin-left: 2%;
+    animation: slideIn 0.8s ease-out;
+    display: block !important; 
+    opacity: 1 !important; 
+    visibility: visible !important; 
+    min-height: 50px; 
+}
+
+#resultText .user-info::before,
+#resultText .selected-cards::before,
+#resultText .card-readings::before,
+#resultText .detailed-reading::before {
+    content: '';
+    position: absolute;
+    top: -10px;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    background: url('images/card-ornament.png') center center / contain no-repeat;
+    transform: translateX(-50%);
+    opacity: 0.8;
+    z-index: 1;
+}
+
+#resultText .user-info h3,
+#resultText .selected-cards h3,
+#resultText .card-readings h3,
+#resultText .detailed-reading h3 {
+    font-family: 'Cinzel Decorative', serif;
+    color: #ffd700;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.7);
+    margin-bottom: 10px;
+    font-size: 1.2em;
+}
+
+#resultText .user-info {
+    border-top: 2px solid #ffd700; 
+    border-bottom: 2px solid #ffd700;
+}
+
+#resultText .selected-cards {
+    border-left: 2px solid #ffd700;
+    border-right: 2px solid #ffd700;
+}
+
+#resultText .card-readings {
+    border-top: 2px dotted #ffd700;
+    border-bottom: 2px dotted #ffd700;
+}
+
+#resultText .detailed-reading {
+    border-left: 2px dashed #ffd700;
+    border-right: 2px dashed #ffd700;
+}
+
+
+#resultSection button, #savedResultsSection button {
+    margin: 10px 5px;
+    display: inline-block;
+}
+
+
+.parchment-roll {
+    transform: none !important; 
+    opacity: 1 !important; 
+    animation: none !important; 
+}
+
+@keyframes rollOpen {
+    0% { transform: scaleY(0) translateY(-20px); opacity: 0; }
+    100% { transform: scaleY(1) translateY(0); opacity: 1; }
+}
+
+@keyframes flicker {
+    0% { box-shadow: 0 4px 15px rgba(235, 186, 52, 0.3), 0 0 15px rgba(235, 186, 52, 0.2); }
+    25% { box-shadow: 0 6px 20px rgba(235, 186, 52, 0.5), 0 0 20px rgba(235, 186, 52, 0.3); }
+    50% { box-shadow: 0 3px 10px rgba(235, 186, 52, 0.2), 0 0 10px rgba(235, 186, 52, 0.1); }
+    75% { box-shadow: 0 5px 18px rgba(235, 186, 52, 0.4), 0 0 18px rgba(235, 186, 52, 0.25); }
+    100% { box-shadow: 0 4px 15px rgba(235, 186, 52, 0.3), 0 0 15px rgba(235, 186, 52, 0.2); }
+}
+
+@keyframes shimmer {
+    0% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(139, 69, 19, 0.4), 0 0 20px #ffd700; }
+    50% { box-shadow: 0 12px 40px rgba(0, 0, 0, 0.7), inset 0 0 40px rgba(139, 69, 19, 0.6), 0 0 30px #ffd700; }
+    100% { box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 0 30px rgba(139, 69, 19, 0.4), 0 0 20px #ffd700; }
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+@keyframes glow {
+    0% { box-shadow: 0 0 10px rgba(235, 186, 52, 0.5); }
+    100% { box-shadow: 0 0 20px rgba(235, 186, 52, 0.8); }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes slideIn {
+    0% { transform: translateY(-50px) scale(0.8); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Mobil uyumluluk */
+@media (max-width: 600px) {
+    .card {
+        width: 80px;
+        height: 120px;
+    }
+    #userForm, #resultSection, #savedResultsSection, #cardSelection {
+        padding: 20px;
+    }
+    button {
+        padding: 8px 15px;
+        font-size: 0.8em;
+    }
+    button::after {
+        width: 6px;
+        height: 6px;
+    }
+    .intro-screen h1 {
+        font-size: 2.5em;
+    }
+    .intro-screen button, #submitButton {
+        padding: 12px 25px;
+        font-size: 1em;
+    }
+    input, select {
+        padding: 10px;
+        max-width: 200px;
+    }
+    .card-deck {
+        gap: 10px;
+    }
+    .selected-cards {
+        gap: 10px;
+    }
+    .selected-cards-parchment {
+        padding: 10px;
+        max-width: 600px;
+    }
+    .selected-cards-parchment .card-name {
+        font-size: 0.7em;
+        margin: 3px 8px;
+    }
+    #resultText {
+        padding: 15px;
+        font-size: 0.9em;
+        min-height: 150px; 
+    }
+    #resultText .user-info,
+    #resultText .selected-cards,
+    #resultText .card-readings,
+    #resultText .detailed-reading {
+        padding: 10px;
+        margin: 15px 0;
+        min-height: 40px; 
+    }
+    #resultText .user-info h3,
+    #resultText .selected-cards h3,
+    #resultText .card-readings h3,
+    #resultText .detailed-reading h3 {
+        font-size: 1em;
+    }
+}
+
+.mute-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    background: url('images/leather-texture.jpg') center center / cover no-repeat;
+    border: 3px solid #8b4513;
+    border-radius: 8px;
+    padding: 10px 20px;
+    color: #ffd700; 
+    font-family: 'Cinzel', serif;
+    font-size: 1em;
+    text-transform: uppercase;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(139, 69, 19, 0.4), inset 0 0 8px rgba(0, 0, 0, 0.6);
+    transition: transform 0.3s, box-shadow 0.3s;
+    animation: glow 3s infinite alternate;
+    z-index: 999; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mute-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 25px rgba(139, 69, 19, 0.6), inset 0 0 12px rgba(0, 0, 0, 0.8);
+}
+
+.mute-button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 10px;
+    width: 8px;
+    height: 8px;
+    background: #ff0000; 
+    border-radius: 50%;
+    transform: translateY(-50%);
+    opacity: 0.8;
+}
+
+.modern-buttons {
+    display: flex;
+    gap: 12px; 
+    margin-top: 15px; 
+    justify-content: center; 
+    align-items: center; 
+}
+
+#githubButton, #coffeeButton, #websiteButton {
+    background: linear-gradient(135deg, #007bff, #0056b3); 
+    border: none; 
+    border-radius: 8px; 
+    padding: 10px 20px; 
+    color: #ffffff; 
+    font-family: 'Inter', sans-serif; 
+    font-size: 0.9em; 
+    font-weight: 500; 
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 123, 255, 0.2), 0 1px 3px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s; 
+    position: relative; 
+    overflow: hidden; 
+    z-index: 1003; 
+}
+
+#githubButton:hover, #coffeeButton:hover, #websiteButton:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 123, 255, 0.3), 0 2px 4px rgba(0, 0, 0, 0.1);
+    background: linear-gradient(135deg, #0056b3, #003d7a); 
+}
+
+#githubButton {
+    background: linear-gradient(135deg, #6f42c1, #4a2d9e); 
+}
+
+#coffeeButton {
+    background: linear-gradient(135deg, #d32f2f, #9a0007); 
+}
+
+#websiteButton {
+    background: linear-gradient(135deg, #28a745, #1e7e34); 
+}
+
+
+#githubButton::after, #coffeeButton::after, #websiteButton::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.1); 
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.3s;
+    z-index: 1;
+}
+
+#githubButton:hover::after, #coffeeButton:hover::after, #websiteButton:hover::after {
+    opacity: 1;
+}
