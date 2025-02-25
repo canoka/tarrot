@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarrot Dünyasına Hoş Geldiniz</title>
+    <link rel="shortcut icon" href="/images/the-hanged-man.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel&family=Cinzel+Decorative&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <button id="muteButton" class="mute-button">🎵 Müziği Kapat</button>
+    <div id="introScreen" class="intro-screen">
+        <h1 id="introTitle">Tarot Dünyasına Hoş Geldiniz</h1>
+        <select id="languageSelect" onchange="changeLanguage()">
+            <option value="tr">Türkçe</option>
+            <option value="en">English</option>
+        </select>
+        <button id="startButton" onclick="startExperience()">Keşfetmeye Başla</button>
+        
+        <div class="modern-buttons">
+            <button id="githubButton" onclick="window.open('https://github.com/canoka', '_blank')">GitHub Profil</button>
+            <button id="coffeeButton" onclick="window.open('https://buymeacoffee.com/cankarsli', '_blank')">Destekle</button>
+            <button id="websiteButton" onclick="window.open('http://canoka.github.io/', '_blank')">github.io</button>
+        </div>
+    </div>
+
+    <div class="container hidden" id="mainContent">
+        <div id="userForm">
+            <h2 id="formTitle">Tarot Falına Hoş Geldiniz</h2>
+            <form id="infoForm">
+                <table>
+                    <tr>
+                        <td><label id="nameLabel" for="name">İsim:</label></td>
+                        <td><input type="text" id="name" name="name" required></td>
+                    </tr>
+                    <tr>
+                        <td><label id="surnameLabel" for="surname">Soyisim:</label></td>
+                        <td><input type="text" id="surname" name="surname" required></td>
+                    </tr>
+                    <tr>
+                        <td><label id="cityLabel" for="city">Şehir:</label></td>
+                        <td><input type="text" id="city" name="city" required></td>
+                    </tr>
+                    <tr>
+                        <td><label id="relationshipStatusLabel" for="relationshipStatus">İlişki Durumu:</label></td>
+                        <td>
+                            <select id="relationshipStatus" name="relationshipStatus" required>
+                                <option value="" disabled selected>Seçiniz</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td><label id="occupationLabel" for="occupation">Meslek:</label></td>
+                        <td><input type="text" id="occupation" name="occupation" required></td>
+                    </tr>
+                    <tr>
+                        <td><label id="birthDateLabel" for="birthDate">Doğum Tarihi:</label></td>
+                        <td><input type="date" id="birthDate" name="birthDate" required></td>
+                    </tr>
+                    <tr>
+                        <td><label id="layoutLabel" for="layout">Fal Türünü Seç:</label></td>
+                        <td>
+                            <select id="layout" name="layout" required>
+                                <option value="1">1 Kart</option>
+                                <option value="3" selected>3 Kart</option>
+                                <option value="5">5 Kart</option>
+                                <option value="10">10 Kart</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <button type="submit" id="submitButton">Falı Başlat</button>
+            </form>
+        </div>
+        <div id="cardSelection" class="hidden">
+            <h2 id="cardTitle">Kartlarını Seç</h2>
+            <div id="cardDeck" class="card-deck"></div>
+            <div id="selectedCards" class="selected-cards"></div>
+            <div id="selectedCardsParchment" class="selected-cards-parchment hidden"></div>
+        </div>
+        <div id="resultSection" class="hidden parchment-roll">
+            <h2 id="resultTitle">Falın Sonucu</h2>
+            <div id="resultText"></div> <!-- Bu element mutlaka olmalı -->
+            <button id="copyButton" onclick="copyResult()">Sonucu Kopyala</button>
+            <button id="saveButton" onclick="saveResult()">Sonucu Kaydet</button>
+            <button id="savedButton" onclick="showSavedResults()">Kaydedilen Falları Gör</button>
+            <button id="restartButton" onclick="restart()">Yeniden Başla</button>
+        </div>
+        <div id="savedResultsSection" class="hidden">
+            <h2 id="savedTitle">Kaydedilen Fallar</h2>
+            <div id="savedResultsList"></div>
+            <button onclick="hideSavedResults()" id="backButton">Geri Dön</button>
+        </div>
+    </div>
+    <audio id="backgroundMusic" loop>
+        <source src="sounds/medieval-background.mp3">
+    </audio>
+    <script>
+        var audio = document.getElementById("backgroundMusic");
+        audio.volume = 0.01;
+      </script>
+    <script src="script.js"></script>
+</body>
+</html>
